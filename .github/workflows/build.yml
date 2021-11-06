@@ -25,9 +25,11 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
-      - uses: helm/chart-releaser-action@v1.2.0
+      - uses: stefanprodan/helm-gh-pages@master
         with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
           charts_dir: .
           charts_repo_url: http://ehaupt.de/menero-helm-charts/
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          owner: mahaupt
+          repository: menero-helm-charts
+          branch: release
