@@ -1,0 +1,30 @@
+name: Workflow
+
+'on':
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.4.0
+    - name: Lint
+      run: helm lint .
+
+  publish-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: J12934/helm-gh-pages-action@master
+        with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: release
+          charts-folder: .

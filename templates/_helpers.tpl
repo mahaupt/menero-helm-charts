@@ -1,3 +1,7 @@
+{{- define "menero-helm-chart.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
 {{- define "menero-helm-chart.fullname" -}}
 {{- .Release.Name }}
 {{- end }}

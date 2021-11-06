@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "menero-helm-chart.fullname" . }}
+  name: {{ include "menero-helm-chart.fullname" . }}-landing
   labels:
     {{- include "menero-helm-chart.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - port: {{ .Values.landing.port }}
+      targetPort: {{ .Values.landing.port }}
       protocol: TCP
       name: http
   selector:
     {{- include "menero-helm-chart.selectorLabels" . | nindent 4 }}
+    app.menero.de/type: landing

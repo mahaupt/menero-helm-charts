@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: {{ .Values.landing.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
