@@ -3,6 +3,16 @@ entries:
   menero-helm-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-11-06T16:55:19.834399136Z"
+    description: Menero Chart
+    digest: bd9c35bb28a1e347330af680f7c4c7081cfa7757e41c4ba2394f2c153574a2b7
+    name: menero-helm-chart
+    type: application
+    urls:
+    - https://mahaupt.github.io/menero-helm-charts/menero-helm-chart-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-11-06T17:24:25.035932+01:00"
     description: Menero Chart
     digest: e009151e010144f4ffebfff93cb34709730419e26ae1713a702495faeb58ba28
@@ -11,4 +21,4 @@ entries:
     urls:
     - http://ehaupt.de/menero-helm-charts/menero-helm-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-06T17:24:25.03342+01:00"
+generated: "2021-11-06T16:55:19.833849033Z"
