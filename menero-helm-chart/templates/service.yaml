@@ -1,0 +1,19 @@
+{{- range $key, $value := .Values.apps }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "menero-helm-chart.fullname" $ }}-{{ $key }}
+  labels:
+    {{- include "menero-helm-chart.labels" $ | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .port }}
+      targetPort: {{ .port }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "menero-helm-chart.selectorLabels" $ | nindent 4 }}
+    app.menero.de/type: {{ . }}
+---
+{{- end }}

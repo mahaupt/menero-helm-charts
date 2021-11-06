@@ -1,0 +1,37 @@
+{{- range $key, $value := .Values.apps }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "menero-helm-chart.fullname" $ }}-{{ $key }}
+  labels:
+    {{- include "menero-helm-chart.labels" $ | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "menero-helm-chart.selectorLabels" $ | nindent 6 }}
+      app.menero.de/type: {{ $key }}
+  replicas: {{ .replicas }}
+  template:
+    metadata:
+      labels:
+        {{- include "menero-helm-chart.selectorLabels" $ | nindent 8 }}
+        app.menero.de/type: {{ $key }}
+    spec:
+      containers:
+        - name: menero-{{ $key }}
+          image: "{{ .image }}"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: {{ .port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+---
+{{- end }}

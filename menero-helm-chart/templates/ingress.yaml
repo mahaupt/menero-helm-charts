@@ -6,43 +6,15 @@ metadata:
     {{- include "menero-helm-chart.labels" . | nindent 4 }}
 spec:
   rules:
-    - host: {{ .Values.landing.host }}
+    {{- range $key, $value := .Values.apps }}
+    - host: {{ .host }}
       http:
         paths:
           - path: /
             pathType: ImplementationSpecific
             backend:
               service:
-                name: {{ include "menero-helm-chart.fullname" . }}-landing
+                name: {{ include "menero-helm-chart.fullname" $ }}-{{ $key }}
                 port:
-                  number: {{ .Values.landing.port }}
-    - host: {{ .Values.guest.host }}
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ include "menero-helm-chart.fullname" . }}-guest
-                port:
-                  number: {{ .Values.guest.port }}
-    - host: {{ .Values.gastro.host }}
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ include "menero-helm-chart.fullname" . }}-gastro
-                port:
-                  number: {{ .Values.gastro.port }}
-    - host: {{ .Values.backend.host }}
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ include "menero-helm-chart.fullname" . }}-backend
-                port:
-                  number: {{ .Values.backend.port }}
+                  number: {{ .port }}
+    {{- end }}
