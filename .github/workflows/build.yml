@@ -29,7 +29,7 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           charts_dir: .
-          charts_repo_url: http://ehaupt.de/menero-helm-charts/
+          charts_url: http://ehaupt.de/menero-helm-charts/
           owner: mahaupt
           repository: menero-helm-charts
           branch: release
