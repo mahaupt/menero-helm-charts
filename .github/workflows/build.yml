@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: helm/chart-releaser-action@v1.2.0
         with:
-          charts_dir: charts
+          charts_dir: .
           charts_repo_url: http://ehaupt.de/menero-helm-charts/
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
