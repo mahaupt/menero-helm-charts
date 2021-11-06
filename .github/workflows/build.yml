@@ -21,10 +21,11 @@ jobs:
 
   publish-chart:
     runs-on: ubuntu-latest
+    needs: [lint]
     steps:
       - uses: actions/checkout@v2
       - uses: J12934/helm-gh-pages-action@master
         with:
-          access-token: ${{ secrets.ACCESS_TOKEN }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-branch: release
           charts-folder: .
