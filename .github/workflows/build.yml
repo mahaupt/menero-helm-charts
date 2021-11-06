@@ -17,7 +17,7 @@ jobs:
       with:
         version: v3.4.0
     - name: Lint
-      run: helm lint .
+      run: helm lint menero-helm-chart
 
   publish-chart:
     runs-on: ubuntu-latest
