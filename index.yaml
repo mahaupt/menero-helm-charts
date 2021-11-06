@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  menero-helm-chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-06T17:24:25.035932+01:00"
+    description: Menero Chart
+    digest: e009151e010144f4ffebfff93cb34709730419e26ae1713a702495faeb58ba28
+    name: menero-helm-chart
+    type: application
+    urls:
+    - http://ehaupt.de/menero-helm-charts/menero-helm-chart-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-11-06T17:24:25.03342+01:00"
