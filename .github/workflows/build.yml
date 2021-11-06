@@ -25,8 +25,9 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
-      - uses: J12934/helm-gh-pages-action@master
+      - uses: helm/chart-releaser-action@v1.2.0
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-branch: release
-          charts-folder: .
+          charts_dir: charts
+          charts_repo_url: http://ehaupt.de/menero-helm-charts/
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
