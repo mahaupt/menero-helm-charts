@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "menero-helm-chart.fullname" . }}-landing
+  labels:
+    {{- include "menero-helm-chart.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "menero-helm-chart.selectorLabels" . | nindent 6 }}
+      app.menero.de/type: landing
+  replicas: {{ .Values.landing.replicas }}
+  template:
+    metadata:
+      labels:
+        {{- include "menero-helm-chart.selectorLabels" . | nindent 8 }}
+        app.menero.de/type: landing
+    spec:
+      containers:
+        - name: menero-landing
+          image: "{{ .Values.landing.image }}"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
